@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafael Augusto — Apps & Jogos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">Rafael<span>.</span>Augusto</div>
+  <nav>
+    <a href="#apps">Apps</a>
+    <a href="#sobre">Sobre</a>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema" id="themeBtn">🌙</button>
+    <a href="mailto:rafael.augustoprof@gmail.com" class="nav-cta">Contato</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-tag">Desenvolvedor &amp; Professor</div>
+  <h1>Apps que <em>ensinam</em><br>e <em>simplificam</em></h1>
+  <p class="hero-sub">Aplicativos para educação e gestão financeira. Desenvolvidos com Unity e paixão pelo ensino.</p>
+</section>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">7</div>
+    <div class="stat-label">Apps publicados</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">2</div>
+    <div class="stat-label">Categorias</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">Android</div>
+    <div class="stat-label">Plataforma</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">Unity</div>
+    <div class="stat-label">Engine</div>
+  </div>
+</div>
+
+<div class="filter-bar" id="apps">
+  <button class="filter-btn active" onclick="filtrar('todos', this)">Todos</button>
+  <button class="filter-btn edu" onclick="filtrar('edu', this)">Educação</button>
+  <button class="filter-btn fin" onclick="filtrar('fin', this)">Financeiro</button>
+</div>
+
+<div class="grid">
+
+  <!-- KLAD IN CUBE -->
+  <div class="card edu card-wide">
+    <span class="card-tag edu">Educação</span>
+    <span class="card-icon">🧊</span>
+    <h2>Klad in Cube</h2>
+    <p>Jogo educacional desenvolvido para o ensino, com mecânicas envolventes que estimulam o aprendizado de forma lúdica e interativa.</p>
+    <div class="card-platform">
+      <span class="platform-badge">Android</span>
+      <span class="platform-badge">Unity</span>
+    </div>
+    <div class="card-arrow">↗</div>
+  </div>
+
+  <!-- CÍRCULO TRIGONOMÉTRICO -->
+  <div class="card edu card-med">
+    <span class="card-tag edu">Educação</span>
+    <span class="card-icon">⭕</span>
+    <h2>Círculo Trigonométrico 2D</h2>
+    <p>Visualização interativa do círculo trigonométrico para apoio ao aprendizado de matemática.</p>
+    <div class="card-platform">
+      <span class="platform-badge">Android</span>
+      <span class="platform-badge">Unity</span>
+    </div>
+    <div class="card-arrow">↗</div>
+  </div>
+
+  <!-- MARS IN ORBIT -->
+  <div class="card edu card-med">
+    <span class="card-tag edu">Educação</span>
+    <span class="card-icon">🪐</span>
+    <h2>Mars in Orbit</h2>
+    <p>Simulação espacial educacional com foco em astronomia e física orbital de forma visual e intuitiva.</p>
+    <div class="card-platform">
+      <span class="platform-badge">Android</span>
+      <span class="platform-badge">Unity</span>
+    </div>
+    <div class="card-arrow">↗</div>
+  </div>
+
+  <!-- WIND TOWER -->
+  <div class="card edu card-wide">
+    <span class="card-tag edu">Educação</span>
+    <span class="card-icon">💨</span>
+    <h2>Wind Tower</h2>
+    <p>Aplicativo educacional interativo com simulações e conteúdo visual sobre energia eólica e sustentabilidade ambiental.</p>
+    <div class="card-platform">
+      <span class="platform-badge">Android</span>
+      <span class="platform-badge">Unity</span>
+    </div>
+    <div class="card-arrow">↗</div>
+  </div>
+
+  <!-- FÉRIAS FÁCIL -->
+  <div class="card fin card-third">
+    <span class="card-tag fin">Financeiro</span>
+    <span class="card-icon">🏖️</span>
+    <h2>Férias Fácil</h2>
+    <p>Calculadora completa para cálculo de férias trabalhistas com precisão e simplicidade.</p>
+    <div class="card-platform">
+      <span class="platform-badge">Android</span>
+    </div>
+    <div class="card-arrow">↗</div>
+  </div>
+
+  <!-- RESCISÃO FÁCIL -->
+  <div class="card fin card-third">
+    <span class="card-tag fin">Financeiro</span>
+    <span class="card-icon">📋</span>
+    <h2>Rescisão Fácil</h2>
+    <p>Calculadora de rescisão trabalhista com todos os encargos e verbas rescisórias.</p>
+    <div class="card-platform">
+      <span class="platform-badge">Android</span>
+    </div>
+    <div class="card-arrow">↗</div>
+  </div>
+
+  <!-- SALÁRIO LÍQUIDO -->
+  <div class="card fin card-third">
+    <span class="card-tag fin">Financeiro</span>
+    <span class="card-icon">💰</span>
+    <h2>Salário Líquido</h2>
+    <p>Calcule seu salário líquido com descontos de INSS, IRRF e outros encargos de forma rápida.</p>
+    <div class="card-platform">
+      <span class="platform-badge">Android</span>
+    </div>
+    <div class="card-arrow">↗</div>
+  </div>
+
+</div>
+
+<!-- ABOUT -->
+<div class="about" id="sobre">
+  <div class="about-left">
+    <h3>Sobre o desenvolvedor</h3>
+    <p>Professor da educação infantil e desenvolvedor de jogos com Unity 3D. Combino experiência em sala de aula com desenvolvimento mobile para criar aplicativos que realmente fazem diferença no aprendizado.</p>
+    <div class="skills-grid">
+      <div class="skill-item"><span class="skill-dot"></span>Unity 3D</div>
+      <div class="skill-item"><span class="skill-dot"></span>C#</div>
+      <div class="skill-item"><span class="skill-dot"></span>Android</div>
+      <div class="skill-item"><span class="skill-dot"></span>AdMob</div>
+      <div class="skill-item"><span class="skill-dot"></span>Educação</div>
+      <div class="skill-item"><span class="skill-dot"></span>Game Design</div>
+    </div>
+  </div>
+  <div class="about-right">
+    <div>
+      <h3>Freelance</h3>
+      <p>Disponível para projetos de desenvolvimento mobile, jogos educacionais e aplicativos Unity. Entre em contato para discutir seu projeto.</p>
+    </div>
+    <div class="contact-block">
+      <h4>Vamos trabalhar juntos?</h4>
+      <p>Projetos educacionais, games e apps mobile.</p>
+      <a href="mailto:rafael.augustoprof@gmail.com">rafael.augustoprof@gmail.com →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Rafael Augusto</span>
+  <span>Desenvolvido com Unity &amp; ❤️</span>
+</footer>
+
+<script src="main.js"></script>
+
+</body>
+</html>
