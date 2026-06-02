@@ -1,0 +1,303 @@
+/* =========================================
+   VARIÁVEIS DE CORES E ESTILO (Tema Escuro)
+   ========================================= */
+:root {
+    --bg-dark: #0d1117;          /* Fundo principal */
+    --bg-card: #161b22;          /* Fundo dos cartões */
+    --text-main: #c9d1d9;        /* Texto principal */
+    --text-muted: #8b949e;       /* Texto secundário/pálido */
+    --accent: #58a6ff;           /* Azul principal (links) */
+    --accent-hover: #1f6feb;     /* Azul hover */
+    --border-color: #30363d;     /* Cor das bordas */
+    --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* =========================================
+   RESET GERAL
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth; /* Rolagem suave ao clicar nos links do menu */
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+ul {
+    list-style: none;
+}
+
+/* =========================================
+   ESTRUTURA DE LAYOUT
+   ========================================= */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* =========================================
+   CABEÇALHO E NAVEGAÇÃO
+   ========================================= */
+.header {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background: rgba(13, 17, 23, 0.95); /* Leve transparência */
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav-menu ul {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-menu a {
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.nav-menu a:hover {
+    color: var(--accent);
+}
+
+/* =========================================
+   HERO (Apresentação)
+   ========================================= */
+.hero {
+    text-align: center;
+    padding: 120px 0 80px;
+}
+
+.hero h2 {
+    font-size: 2.8rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* =========================================
+   BOTÕES
+   ========================================= */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #238636;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #2ea043;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.btn-outline {
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-youtube {
+    background-color: #da3633;
+    color: #ffffff;
+}
+
+.btn-youtube:hover {
+    background-color: #b52b28;
+    color: #ffffff;
+}
+
+/* =========================================
+   SEÇÃO SOBRE MIM
+   ========================================= */
+.sobre-content {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* =========================================
+   PROJETOS (Grid e Cartões)
+   ========================================= */
+.grid-projetos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card-projeto, .card-youtube {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card-projeto:hover, .card-youtube:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+}
+
+.card-projeto h3, .card-youtube h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.card-projeto p, .card-youtube p {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   TAGS DE TECNOLOGIA
+   ========================================= */
+.tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(88, 166, 255, 0.1);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-dev {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #d29922;
+    border: 1px solid #d29922;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* =========================================
+   RODAPÉ / CONTATO
+   ========================================= */
+.footer {
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    padding: 60px 0 40px;
+    margin-top: 40px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.social-icon {
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.social-icon:hover {
+    color: var(--accent);
+}
+
+.copyright {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   RESPONSIVIDADE (Celulares e Tablets)
+   ========================================= */
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-menu ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+    
+    .hero {
+        padding: 60px 0 40px;
+    }
+}
