@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rafael Unity Dev — Apps & Jogos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+
+    /* ===== HERO ===== */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      min-height: calc(100vh - 60px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-left {
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-left h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 2rem;
+    }
+
+    .hero-left h1 .accent { color: var(--accent); }
+    .hero-left h1 .outline {
+      color: transparent;
+      -webkit-text-stroke: 2px var(--border);
+    }
+
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stat-num {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 2.4rem;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.3rem;
+    }
+
+    /* Photo panel */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg2);
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(15%);
+      transition: filter 0.4s;
+    }
+
+    .hero-right:hover .hero-photo { filter: grayscale(0%); }
+
+    .hero-photo-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to top, var(--bg2), transparent);
+      pointer-events: none;
+    }
+
+    .hero-photo-caption {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .hero-photo-caption .name {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .hero-photo-caption .role {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* ===== ABOUT STRIP ===== */
+    .about-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-cell {
+      padding: 2rem 2.5rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .about-cell:last-child { border-right: none; }
+
+    .about-cell-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .about-cell-value {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    /* ===== APPS SECTION ===== */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .apps-grid .project-card.featured {
+      grid-column: span 2;
+    }
+
+    .apps-grid .project-card.featured .card-thumb {
+      aspect-ratio: 21/9;
+    }
+
+    /* ===== FREELANCE SECTION ===== */
+    .freelance-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .freelance-item {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
+      border-radius: var(--radius);
+    }
+
+    .freelance-item:hover { background: var(--surface2); padding-left: 1rem; padding-right: 1rem; margin: 0 -1rem; }
+    .freelance-item:first-child { border-top: 1px solid var(--border); }
+
+    .freelance-num {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--muted);
+      letter-spacing: -0.02em;
+    }
+
+    .freelance-info h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .freelance-info p {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .freelance-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    .contact-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .contact-left {
+      background: var(--text);
+      color: var(--bg);
+      padding: 5rem 4rem;
+    }
+
+    .contact-left h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-left p {
+      font-size: 0.9rem;
+      opacity: 0.6;
+      line-height: 1.8;
+      max-width: 360px;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-left .btn-primary {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .contact-left .btn-primary:hover {
+      background: var(--bg2);
+    }
+
+    .contact-right {
+      background: var(--surface);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .contact-item-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .contact-item-value {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 3rem 1.5rem; }
+      .hero-right { height: 360px; }
+      .about-strip { grid-template-columns: 1fr 1fr; }
+      .about-cell { border-bottom: 1px solid var(--border); }
+      .apps-grid { grid-template-columns: 1fr; }
+      .apps-grid .project-card.featured { grid-column: span 1; }
+      .apps-grid .project-card.featured .card-thumb { aspect-ratio: 16/9; }
+      .contact-section { grid-template-columns: 1fr; }
+      .contact-left, .contact-right { padding: 3rem 1.5rem; }
+      .footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+      .freelance-item { grid-template-columns: 40px 1fr; }
+      .freelance-tags { display: none; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar anim-1">
+  <div class="navbar-logo">Rafael <em>Unity</em> Dev</div>
+  <ul class="navbar-links">
+    <li><a href="#apps">Apps</a></li>
+    <li><a href="#freelance">Freelance</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <div class="navbar-actions">
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Alternar tema">🌙</button>
+    <a href="#contato" class="btn btn-primary">Contratar</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-left anim-2">
+    <span class="hero-eyebrow">Desenvolvedor & Professor</span>
+    <h1>
+      Apps que<br>
+      <span class="accent">ensinam</span><br>
+      <span class="outline">&amp; conectam</span>
+    </h1>
+    <p class="hero-bio">
+      Professor da educação infantil e desenvolvedor Android com Unity 3D.
+      Crio aplicativos educacionais e ferramentas de gestão financeira que
+      resolvem problemas reais — com código limpo e propósito claro.
+    </p>
+    <div class="hero-ctas">
+      <a href="#apps" class="btn btn-primary">Ver projetos</a>
+      <a href="#contato" class="btn btn-outline">Falar comigo</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">7</div>
+        <div class="hero-stat-label">Apps publicados</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">Categorias</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">Unity</div>
+        <div class="hero-stat-label">Engine principal</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right anim-3">
+    <img src="assets/img/rafael.png" alt="Rafael Augusto" class="hero-photo">
+    <div class="hero-photo-overlay"></div>
+    <div class="hero-photo-caption">
+      <div class="name">Rafael Augusto</div>
+      <div class="role">Developer · Teacher · Ceará-Mirim, RN</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT STRIP ===== -->
+<div class="about-strip anim-4">
+  <div class="about-cell">
+    <div class="about-cell-label">Especialidade</div>
+    <div class="about-cell-value">Unity 3D & C#</div>
+  </div>
+  <div class="about-cell">
+    <div class="about-cell-label">Plataforma</div>
+    <div class="about-cell-value">Android Mobile</div>
+  </div>
+  <div class="about-cell">
+    <div class="about-cell-label">Foco</div>
+    <div class="about-cell-value">Educação & Finanças</div>
+  </div>
+  <div class="about-cell">
+    <div class="about-cell-label">Disponível para</div>
+    <div class="about-cell-value">Freelance</div>
+  </div>
+</div>
+
+<!-- ===== APPS ===== -->
+<section class="section anim-5" id="apps">
+  <div class="section-header">
+    <h2 class="section-title">Aplicativos</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filtrar('all', this)">Todos</button>
+      <button class="filter-btn" onclick="filtrar('edu', this)">Educação</button>
+      <button class="filter-btn" onclick="filtrar('fin', this)">Financeiro</button>
+    </div>
+  </div>
+
+  <div class="apps-grid">
+
+    <!-- WIND TOWER — featured -->
+    <div class="project-card featured" data-cat="edu" onclick="location.href='wind-tower/index.html'">
+      <div class="card-thumb">
+        <img src="wind-tower/img/cena1.png" alt="Wind Tower">
+      </div>
+      <div class="card-body">
+        <span class="tag tag-edu">Educação</span>
+        <div class="card-title">Wind Tower</div>
+        <div class="card-desc">Simulador 3D de turbinas eólicas. Física real, gráficos de produção e cálculo de residências abastecidas em tempo real.</div>
+        <div class="card-footer">
+          <div class="card-platform">
+            <span class="badge">Android</span>
+            <span class="badge">Unity</span>
+          </div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KLAD IN CUBE -->
+    <div class="project-card" data-cat="edu" onclick="#">
+      <div class="card-thumb" style="font-size:3.5rem;">🧊</div>
+      <div class="card-body">
+        <span class="tag tag-edu">Educação</span>
+        <div class="card-title">Klad in Cube</div>
+        <div class="card-desc">Jogo educacional com mecânicas envolventes que estimulam o aprendizado de forma lúdica e interativa.</div>
+        <div class="card-footer">
+          <div class="card-platform"><span class="badge">Android</span><span class="badge">Unity</span></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CIRCULO TRIGONOMETRICO -->
+    <div class="project-card" data-cat="edu" onclick="#">
+      <div class="card-thumb" style="font-size:3.5rem;">⭕</div>
+      <div class="card-body">
+        <span class="tag tag-edu">Educação</span>
+        <div class="card-title">Círculo Trigonométrico 2D</div>
+        <div class="card-desc">Visualização interativa do círculo trigonométrico para apoio ao ensino de matemática.</div>
+        <div class="card-footer">
+          <div class="card-platform"><span class="badge">Android</span><span class="badge">Unity</span></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARS IN ORBIT -->
+    <div class="project-card" data-cat="edu" onclick="#">
+      <div class="card-thumb" style="font-size:3.5rem;">🪐</div>
+      <div class="card-body">
+        <span class="tag tag-edu">Educação</span>
+        <div class="card-title">Mars in Orbit</div>
+        <div class="card-desc">Simulação espacial educacional com foco em astronomia e física orbital de forma visual e intuitiva.</div>
+        <div class="card-footer">
+          <div class="card-platform"><span class="badge">Android</span><span class="badge">Unity</span></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FÉRIAS FÁCIL -->
+    <div class="project-card" data-cat="fin" onclick="#">
+      <div class="card-thumb" style="font-size:3.5rem;">🏖️</div>
+      <div class="card-body">
+        <span class="tag tag-fin">Financeiro</span>
+        <div class="card-title">Férias Fácil</div>
+        <div class="card-desc">Calculadora completa para cálculo de férias trabalhistas com precisão e simplicidade.</div>
+        <div class="card-footer">
+          <div class="card-platform"><span class="badge">Android</span></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESCISÃO FÁCIL -->
+    <div class="project-card" data-cat="fin" onclick="#">
+      <div class="card-thumb" style="font-size:3.5rem;">📋</div>
+      <div class="card-body">
+        <span class="tag tag-fin">Financeiro</span>
+        <div class="card-title">Rescisão Fácil</div>
+        <div class="card-desc">Calculadora de rescisão trabalhista com todos os encargos e verbas rescisórias de forma clara.</div>
+        <div class="card-footer">
+          <div class="card-platform"><span class="badge">Android</span></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SALÁRIO LÍQUIDO -->
+    <div class="project-card" data-cat="fin" onclick="#">
+      <div class="card-thumb" style="font-size:3.5rem;">💰</div>
+      <div class="card-body">
+        <span class="tag tag-fin">Financeiro</span>
+        <div class="card-title">Salário Líquido</div>
+        <div class="card-desc">Calcule seu salário líquido com descontos de INSS, IRRF e outros encargos de forma rápida.</div>
+        <div class="card-footer">
+          <div class="card-platform"><span class="badge">Android</span></div>
+          <div class="card-arrow">↗</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FREELANCE ===== -->
+<section class="section" id="freelance">
+  <div class="section-header">
+    <h2 class="section-title">Freelance</h2>
+    <span style="font-size:0.82rem; color:var(--muted);">Projetos sob demanda</span>
+  </div>
+
+  <div class="freelance-list">
+    <div class="freelance-item">
+      <div class="freelance-num">01</div>
+      <div class="freelance-info">
+        <h3>Desenvolvimento de Jogos Educacionais</h3>
+        <p>Criação de jogos Unity 3D/2D personalizados para escolas e plataformas de ensino.</p>
+      </div>
+      <div class="freelance-tags">
+        <span class="tag tag-edu">Unity</span>
+        <span class="tag tag-edu">C#</span>
+      </div>
+    </div>
+    <div class="freelance-item">
+      <div class="freelance-num">02</div>
+      <div class="freelance-info">
+        <h3>Apps Android Corporativos</h3>
+        <p>Desenvolvimento de aplicativos mobile para empresas com foco em usabilidade e performance.</p>
+      </div>
+      <div class="freelance-tags">
+        <span class="tag tag-fin">Android</span>
+        <span class="tag tag-fin">Unity</span>
+      </div>
+    </div>
+    <div class="freelance-item">
+      <div class="freelance-num">03</div>
+      <div class="freelance-info">
+        <h3>Simuladores e Visualizações 3D</h3>
+        <p>Simulações educacionais e industriais em Unity com física real e interface intuitiva.</p>
+      </div>
+      <div class="freelance-tags">
+        <span class="tag tag-edu">3D</span>
+        <span class="tag tag-edu">Simulação</span>
+      </div>
+    </div>
+    <div class="freelance-item">
+      <div class="freelance-num">04</div>
+      <div class="freelance-info">
+        <h3>Calculadoras e Ferramentas Financeiras</h3>
+        <p>Apps de cálculo trabalhista, financeiro e gestão pessoal para Android.</p>
+      </div>
+      <div class="freelance-tags">
+        <span class="tag tag-fin">Financeiro</span>
+        <span class="tag tag-fin">Mobile</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<div class="contact-section" id="contato">
+  <div class="contact-left">
+    <h2>Vamos trabalhar juntos?</h2>
+    <p>Disponível para projetos de desenvolvimento mobile, jogos educacionais e aplicativos Unity. Entre em contato e vamos conversar.</p>
+    <a href="mailto:rafael.augustoprof@gmail.com" class="btn btn-primary">Enviar mensagem</a>
+  </div>
+  <div class="contact-right">
+    <div class="contact-item">
+      <div class="contact-item-label">E-mail</div>
+      <div class="contact-item-value">rafael.augustoprof@gmail.com</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-item-label">Localização</div>
+      <div class="contact-item-value">Ceará-Mirim, RN — Brasil</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-item-label">Disponibilidade</div>
+      <div class="contact-item-value">Aberto a projetos freelance</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <span>© 2025 Rafael Unity Dev</span>
+  <span>Desenvolvido com Unity &amp; ❤️</span>
+</footer>
+
+<script src="assets/main.js"></script>
+
+</body>
+</html>

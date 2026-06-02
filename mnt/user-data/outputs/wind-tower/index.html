@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wind Tower — Rafael Unity Dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+
+    /* ===== APP HERO ===== */
+    .app-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 540px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .app-hero-left {
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .app-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .app-logo-wrap img {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .app-logo-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .app-hero-left h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+    }
+
+    .app-hero-left h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .app-hero-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+
+    .app-hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .app-hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg2);
+    }
+
+    .app-hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.5s ease;
+    }
+
+    .app-hero-right:hover img { transform: scale(1.03); }
+
+    /* ===== STATS STRIP ===== */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-cell {
+      padding: 1.8rem 2.5rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-cell:last-child { border-right: none; }
+
+    .stat-val {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+
+    /* ===== FEATURES GRID ===== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feature-cell {
+      background: var(--surface);
+      padding: 2.5rem;
+      transition: background 0.2s;
+    }
+
+    .feature-cell:hover { background: var(--surface2); }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-cell h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-cell p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ===== SCREENSHOTS ===== */
+    .screenshots-wrap {
+      overflow-x: auto;
+      display: flex;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .screenshots-wrap::-webkit-scrollbar { height: 4px; }
+    .screenshots-wrap::-webkit-scrollbar-track { background: transparent; }
+    .screenshots-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .screenshot-thumb {
+      flex-shrink: 0;
+      width: 320px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s;
+      aspect-ratio: 16/9;
+    }
+
+    .screenshot-thumb:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .screenshot-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: var(--radius-lg);
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+
+    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+    /* ===== TECH + NOTES ===== */
+    .tech-notes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tech-panel, .notes-panel {
+      background: var(--surface);
+      padding: 3rem 4rem;
+    }
+
+    .panel-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tech-tag {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.4rem 0.9rem;
+      border-radius: 0.4rem;
+      font-size: 0.78rem;
+    }
+
+    .tech-tag.hi {
+      background: rgba(0,87,255,0.08);
+      border-color: rgba(0,87,255,0.2);
+      color: var(--accent);
+    }
+
+    [data-theme="dark"] .tech-tag.hi {
+      background: rgba(77,139,255,0.12);
+      border-color: rgba(77,139,255,0.25);
+    }
+
+    .notes-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .notes-list li {
+      display: flex;
+      gap: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      align-items: flex-start;
+    }
+
+    .notes-list li::before {
+      content: '→';
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ===== CTA BANNER ===== */
+    .cta-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3.5rem 4rem;
+      border-bottom: 1px solid var(--border);
+      gap: 2rem;
+    }
+
+    .cta-banner h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      letter-spacing: -0.02em;
+    }
+
+    .cta-banner p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .app-hero { grid-template-columns: 1fr; min-height: auto; }
+      .app-hero-left { padding: 3rem 1.5rem; border-right: none; }
+      .app-hero-right { height: 280px; }
+      .stats-strip { grid-template-columns: 1fr 1fr; }
+      .stat-cell { border-bottom: 1px solid var(--border); }
+      .features-grid { grid-template-columns: 1fr; }
+      .tech-notes { grid-template-columns: 1fr; }
+      .tech-panel, .notes-panel { padding: 2rem 1.5rem; }
+      .cta-banner { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar anim-1">
+  <a href="../index.html" style="display:flex;align-items:center;gap:0.5rem;color:var(--muted);font-size:0.82rem;letter-spacing:0.03em;transition:color 0.2s;"
+     onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">
+    ← Portfólio
+  </a>
+  <div class="navbar-logo">Rafael <em>Unity</em> Dev</div>
+  <div class="navbar-actions">
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Alternar tema">🌙</button>
+    <a href="#download" class="btn btn-primary">▶ Play Store</a>
+  </div>
+</nav>
+
+<!-- APP HERO -->
+<section class="app-hero anim-2">
+  <div class="app-hero-left">
+    <div class="app-logo-wrap">
+      <img src="img/logo.png" alt="Wind Tower Logo">
+      <span class="app-logo-name">Wind Tower</span>
+    </div>
+    <span class="tag tag-edu" style="margin-bottom:1.5rem;">💨 Educação · Sustentabilidade</span>
+    <h1>Simule o<br>poder do <em>vento</em></h1>
+    <p class="app-hero-desc">
+      Simulador 3D de energia eólica para Android. Ajuste velocidade, raio das pás e rendimento — e veja em tempo real a potência gerada, o histórico de produção e quantas residências podem ser abastecidas.
+    </p>
+    <div class="app-hero-actions">
+      <a href="#download" class="btn btn-primary">▶ Baixar grátis</a>
+      <a href="#screenshots" class="btn btn-outline">Ver capturas</a>
+    </div>
+  </div>
+  <div class="app-hero-right">
+    <img src="img/cena2.png" alt="Wind Tower em ação">
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip anim-3">
+  <div class="stat-cell">
+    <div class="stat-val">3D</div>
+    <div class="stat-lbl">Simulação em tempo real</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-val">32×</div>
+    <div class="stat-lbl">Aceleração de tempo</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-val">Free</div>
+    <div class="stat-lbl">Gratuito na Play Store</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-val">Android</div>
+    <div class="stat-lbl">Plataforma</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features-grid anim-4">
+  <div class="feature-cell">
+    <span class="feature-icon">⚡</span>
+    <h3>Física Real</h3>
+    <p>Potência calculada com base em fórmulas reais: velocidade do vento, raio das pás e rendimento da turbina a cada frame.</p>
+  </div>
+  <div class="feature-cell">
+    <span class="feature-icon">🏠</span>
+    <h3>Impacto Social</h3>
+    <p>Visualize em tempo real quantas residências podem ser abastecidas com a energia gerada pela turbina.</p>
+  </div>
+  <div class="feature-cell">
+    <span class="feature-icon">📊</span>
+    <h3>Gráfico de Produção</h3>
+    <p>Histórico por hora com gráfico de barras interativo mostrando energia acumulada em MJ e KJ.</p>
+  </div>
+  <div class="feature-cell">
+    <span class="feature-icon">⏱️</span>
+    <h3>Controle de Tempo</h3>
+    <p>Acelere a simulação até 32× para observar produção acumulada ao longo de horas e dias completos.</p>
+  </div>
+  <div class="feature-cell">
+    <span class="feature-icon">🌪️</span>
+    <h3>Vento Variável</h3>
+    <p>Alterne entre vento constante e variável. Ative o modo segurança para proteger a turbina em ventos extremos.</p>
+  </div>
+  <div class="feature-cell">
+    <span class="feature-icon">🎓</span>
+    <h3>Foco Educacional</h3>
+    <p>Desenvolvido por professor para o ensino de energias renováveis de forma visual, interativa e gratuita.</p>
+  </div>
+</div>
+
+<!-- SCREENSHOTS -->
+<section class="section anim-5" id="screenshots">
+  <div class="section-header">
+    <h2 class="section-title">Capturas de tela</h2>
+    <span style="font-size:0.8rem;color:var(--muted);">← arraste para ver mais</span>
+  </div>
+  <div class="screenshots-wrap">
+    <div class="screenshot-thumb" onclick="openLightbox('img/cena1.png')">
+      <img src="img/cena1.png" alt="Velocidade 8,44 m/s — 6,36 KW">
+    </div>
+    <div class="screenshot-thumb" onclick="openLightbox('img/cena2.png')">
+      <img src="img/cena2.png" alt="Velocidade 10 m/s — 7,54 KW">
+    </div>
+    <div class="screenshot-thumb" onclick="openLightbox('img/cena3.png')">
+      <img src="img/cena3.png" alt="Tela de produção e residências">
+    </div>
+    <div class="screenshot-thumb" onclick="openLightbox('img/cena4.png')">
+      <img src="img/cena4.png" alt="Gráfico de energia por hora">
+    </div>
+    <div class="screenshot-thumb" onclick="openLightbox('img/cena5.png')">
+      <img src="img/cena5.png" alt="Vento extremo 25 m/s — modo segurança">
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="Screenshot ampliado">
+</div>
+
+<!-- TECH + NOTES -->
+<div class="tech-notes">
+  <div class="tech-panel">
+    <div class="panel-title">Tecnologias</div>
+    <div class="tech-tags">
+      <span class="tech-tag hi">Unity 3D</span>
+      <span class="tech-tag hi">C#</span>
+      <span class="tech-tag">Android</span>
+      <span class="tech-tag">AdMob</span>
+      <span class="tech-tag">Physics Engine</span>
+      <span class="tech-tag">Bar Charts</span>
+      <span class="tech-tag">Time Scale</span>
+      <span class="tech-tag">UI Toolkit</span>
+    </div>
+  </div>
+  <div class="notes-panel">
+    <div class="panel-title">Destaques técnicos</div>
+    <ul class="notes-list">
+      <li>Equação de potência eólica aplicada por frame com variáveis ajustáveis</li>
+      <li>Rotação da turbina 3D proporcional à velocidade do vento</li>
+      <li>Aceleração de tempo até 32× com Time.timeScale</li>
+      <li>Histórico de produção por hora em lista rolável</li>
+      <li>Sistema de segurança que desliga turbina em ventos extremos</li>
+      <li>Cálculo automático de residências abastecidas em tempo real</li>
+    </ul>
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner" id="download">
+  <div>
+    <h2>Disponível gratuitamente</h2>
+    <p>Baixe agora na Google Play Store e explore a física da energia eólica.</p>
+  </div>
+  <a href="#" class="btn btn-primary" style="font-size:0.9rem;padding:0.8rem 2rem;">▶ Baixar na Play Store</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span>© 2025 Rafael Unity Dev</span>
+  <a href="../index.html" style="color:var(--muted);transition:color 0.2s;"
+     onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">
+    ← Ver todos os apps
+  </a>
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
