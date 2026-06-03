@@ -36,6 +36,10 @@ body.light-mode .hero h2 {
     color: #212529;
 }
 
+body.light-mode .nav-menu{
+  color: #ffffff;
+}
+
 body.light-mode .section-title{
     color: #212529;
 }
