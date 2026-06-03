@@ -32,3 +32,24 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(el);
     });
 });
+
+// Seleciona o botão de alternância
+const themeToggleBtn = document.getElementById('theme-toggle');
+
+// Verifica se o usuário já visitou o site antes e tinha escolhido o Modo Claro
+if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-mode');
+}
+
+// Escuta o clique no botão
+themeToggleBtn.addEventListener('click', () => {
+    // Alterna a classe .light-mode no <body>
+    document.body.classList.toggle('light-mode');
+    
+    // Salva a preferência do usuário no navegador
+    if (document.body.classList.contains('light-mode')) {
+        localStorage.setItem('theme', 'light');
+    } else {
+        localStorage.setItem('theme', 'dark');
+    }
+});
