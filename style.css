@@ -33,7 +33,9 @@ body.light-mode {
 }
 
 body.light-mode .hero h2,
-body.light-mode h3{
+body.light-mode .card-youtube h3,
+body.light-mode h3
+{
     color: #212529;
 }
 
