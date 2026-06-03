@@ -33,14 +33,14 @@ body.light-mode {
 }
 
 body.light-mode .hero h2,
-body.light-mode .card-youtube h3,
 body.light-mode h3
 {
     color: #212529;
 }
 
 body.light-mode .logo,
-body.light-mode .nav-menu a {
+body.light-mode .nav-menu a,
+body.light-mode .card-youtube h3{
     color: #ffffff;
 }
 
