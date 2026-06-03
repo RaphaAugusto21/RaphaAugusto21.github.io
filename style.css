@@ -32,7 +32,8 @@ body.light-mode {
     --border-color: #dee2e6;     /* Bordas claras */
 }
 
-body.light-mode .hero h2 {
+body.light-mode .hero h2,
+body.light-mode h3{
     color: #212529;
 }
 
