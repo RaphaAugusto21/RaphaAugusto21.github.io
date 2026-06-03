@@ -32,6 +32,15 @@ body.light-mode {
     --border-color: #dee2e6;     /* Bordas claras */
 }
 
+body.light-mode .hero h2 {
+    color: #212529;
+}
+
+body.light-mode .logo,
+body.light-mode .nav-menu a {
+    color: #212529;
+}
+
 /* Ajuste sutil para o fundo do "Sobre Mim" e cartões no Modo Claro */
 body.light-mode .sobre-content, 
 body.light-mode .card-projeto {
@@ -111,7 +120,7 @@ ul {
 
 .section-title {
     font-size: 2rem;
-    color: #242121;
+    color: #ffffff;
     margin-bottom: 40px;
     text-align: center;
 }
