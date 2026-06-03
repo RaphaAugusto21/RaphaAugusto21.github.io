@@ -41,6 +41,10 @@ body.light-mode .nav-menu a {
     color: #ffffff;
 }
 
+body.light-mode .nav-menu a:hover {
+    color: var(--accent) !important;
+}
+
 body.light-mode .section-title{
     color: #212529;
 }
